@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "currency-converter"
+version = "0.1.0"
+description = "site inovador de conversor de moedas"
+authors = ["leandrosfreitas <leandrosanfreitas@gmail.com>"]
+readme = "README.md"
+packages = [
+    { include = "app", from = "backend" }
+]
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+fastapi = {extras = ["standard"], version = "^0.117.1"}
+uvicorn = ">=0.37.0,<0.38.0"
+httpx = ">=0.28.1,<0.29.0"
+sqlalchemy = ">=2.0.43,<3.0.0"
+alembic = ">=1.16.5,<2.0.0"
+python-dotenv = "^1.1.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.2"
+coverage = "^7.10.7"
