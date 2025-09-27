@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DinDin Converter</title>
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+      color: #333333;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    #root {
+      max-width: 600px;
+      width: 100%;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #2e7d32;
+      font-size: 32px;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #555;
+      text-align: center;
+      font-size: 16px;
+    }
+
+    form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    input, select, button {
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      flex: 1;
+      min-width: 120px;
+    }
+
+    input[type="number"] {
+      background-color: #fff;
+    }
+
+    input::placeholder {
+      color: #999;
+    }
+
+    button[type="submit"] {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      cursor: pointer;
+      flex: 0 0 auto;
+      min-width: 100px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #218838;
+    }
+
+    #swap-btn {
+      background-color: #f0f0f0;
+      color: #333;
+      border: 1px solid #ccc;
+      flex: 0 0 auto;
+      min-width: 80px;
+    }
+
+    #swap-btn:hover {
+      background-color: #e0e0e0;
+    }
+
+    #result-box {
+      margin-top: 20px;
+      padding: 20px;
+      border: 2px solid #28a745;
+      border-radius: 8px;
+      background-color: #f0fff4;
+      font-size: 20px;
+      color: #2e7d32;
+      font-weight: bold;
+      text-align: center;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      form {
+        flex-direction: column;
+      }
+      input, select, button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <h1>💱 DinDin Converter</h1>
+    <p>Converta suas moedas de forma rápida e fácil. 💰</p>
+
+    <form id="converter-form">
+      <input 
+        type="number"
+        id="amount"
+        placeholder="Digite o valor (ex: 100)"
+        step="0.01"
+        required 
+      />
+
+      <select id="from-currency" required>
+        <option value="">De:</option>
+        <option value="BRL">BRL - Real Brasileiro</option>
+        <option value="USD">USD - Dólar Americano</option>
+        <option value="EUR">EUR - Euro</option>
+        <option value="GBP">GBP - Libra Esterlina</option>
+        <option value="JPY">JPY - Iene Japonês</option>
+        <option value="AUD">AUD - Dólar Australiano</option>
+        <option value="CAD">CAD - Dólar Canadense</option>
+        <option value="CHF">CHF - Franco Suíço</option>
+      </select>
+
+      <select id="to-currency" required>
+        <option value="">Para:</option>
+        <option value="BRL">BRL - Real Brasileiro</option>
+        <option value="USD">USD - Dólar Americano</option>
+        <option value="EUR">EUR - Euro</option>
+        <option value="GBP">GBP - Libra Esterlina</option>
+        <option value="JPY">JPY - Iene Japonês</option>
+        <option value="AUD">AUD - Dólar Australiano</option>
+        <option value="CAD">CAD - Dólar Canadense</option>
+        <option value="CHF">CHF - Franco Suíço</option>
+      </select>
+
+      <button type="button" id="swap-btn">🔄 Trocar</button>
+
+      <button type="submit">Converter</button>
+    </form>
+
+    <div id="result-box">O resultado da conversão aparecerá aqui! 📈</div>
+  </div>
+
+  <!-- Aqui começa o JavaScript! -->
+  <script>
+    // Encontra o botão de troca pelo ID
+    const swapBtn = document.getElementById('swap-btn');
+    
+    // Encontra os selects de moeda
+    const fromCurrency = document.getElementById('from-currency');
+    const toCurrency = document.getElementById('to-currency');
+    
+    // "Escuta" o clique no botão
+    swapBtn.addEventListener('click', function() {
+      // Pega os valores atuais selecionados
+      const fromValue = fromCurrency.value;
+      const toValue = toCurrency.value;
+      
+      // Troca os valores
+      fromCurrency.value = toValue;
+      toCurrency.value = fromValue;
+      
+      // Opcional: Adiciona um alert para confirmar (pode remover depois)
+      console.log('Moedas trocadas!');  // Isso aparece no console do navegador (F12 > Console)
+    });
+  </script>
+</body>
+</html>
