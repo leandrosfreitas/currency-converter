@@ -1,0 +1,68 @@
+.converter-wrapper {
+  max-width: 600px;
+  width: 100%;
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+input, select, button {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  flex: 1;
+  min-width: 120px;
+}
+
+input[type="number"] {
+  background-color: #fff;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+button[type="submit"] {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  flex: 0 0 auto;
+  min-width: 100px;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+#swap-btn {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+  flex: 0 0 auto;
+  min-width: 80px;
+}
+
+#swap-btn:hover {
+  background-color: #e0e0e0;
+}
+
+@media (max-width: 600px) {
+  form {
+    flex-direction: column;
+  }
+
+  input, select, button {
+    width: 100%;
+  }
+}
