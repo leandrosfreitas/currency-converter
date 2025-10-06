@@ -1,5 +1,6 @@
 import httpx
 from datetime import datetime
+from fastapi import HTTPException
 from app.core.config import API_URL
 
 async def convert_currency(from_currency: str, to_currency: str, amount: float) -> dict:
@@ -11,10 +12,13 @@ async def convert_currency(from_currency: str, to_currency: str, amount: float) 
         "amount": amount
     }
 
-    async with httpx.AsyncClient() as client:
-        response = await client.get(url, params=params)
-        data = response.json()
-
+    try:
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            response = await client.get(url, params=params)
+            data = response.json()
+    except httpx.ConnectTimeout:
+        raise HTTPException(status_code=504, detail="Tempo de conexão esgotado com a API de câmbio.")
+    
     return {
         "valor_convertido": data['result'],
         "cotação": data['info']['quote'],
