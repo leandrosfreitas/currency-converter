@@ -1,11 +1,7 @@
 #result-box {
   margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #28A745;
-  border-radius: 8px;
-  background-color: #F0FFF4;
   font-size: 20px;
-  color: #006400;
+  color: #006400; 
   font-weight: bold;
   text-align: center;
 }
