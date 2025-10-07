@@ -77,14 +77,14 @@ function ConverterForm() {
     e.preventDefault();
     
     const parsedAmount = parseFloat(amount);
-    
+
     
     if (!amount || parsedAmount <= 0) {
       return setLastResult(<p className="custom-error-message">Por favor, digite um valor válido para conversão.</p>);
     }
     
     if (fromCurrency === toCurrency) {
-      return setLastResult(<p className="custom-error-message">Erro: As moedas de origem e destino são as mesmas.</p>);
+      return setLastResult(<p className="custom-error-message">As moedas de origem e destino não podem ser as mesmas.</p>);
     }
     
     setLastResult(<p className="converting-message">Convertendo... <LoadingSpinner /></p>);
@@ -99,8 +99,20 @@ function ConverterForm() {
         body: JSON.stringify({ from_currency: fromCode, to_currency: toCode, amount: parsedAmount })
       });
 
+      if (!response.ok) {
+        const errorData = await response.json();
+
+        // Se for erro de validação (422), mostra a mensagem
+        if (response.status === 422 && Array.isArray(errorData.detail)) {
+          const mensagens = errorData.detail.map((e) => e.msg).join(' | ');
+          return setLastResult(<p className="custom-error-message">Erro: {mensagens}</p>);
+        }
+
+        // Outros erros genéricos
+        return setLastResult(<p className="custom-error-message">Erro ao converter moeda. Tente novamente.</p>);
+      }
+
       const data = await response.json();
-      
       const cotacaoTimestamp = new Date(data.data);
       const valorFormatado = parseFloat(data.valor_convertido).toFixed(2);
       const cotacaoFormatada = parseFloat(data.cotação).toFixed(5);
@@ -130,9 +142,9 @@ function ConverterForm() {
       setLastResult(resultHtml);
 
     } catch (error) {
-      setLastResult(<p className="custom-error-message">Erro ao converter moeda. Tente novamente.</p>);
-      console.error(error);
-    }
+        setLastResult(<p className="custom-error-message">Erro de conexão com o servidor.</p>);
+        console.error(error);
+      }
   };
 
 

@@ -9,19 +9,13 @@ VALID_CURRENCIES = {
 class CurrencyConversionRequest(BaseModel):
     from_currency: Annotated[str, Field(min_length=3, max_length=3)]
     to_currency: Annotated[str, Field(min_length=3, max_length=3)]
-    amount: Annotated[float, Field(gt=0, le=1_000_000)]
+    amount: Annotated[float, Field(gt=0, le=10_000_000)]
 
     @field_validator("from_currency", "to_currency")
     def validar_moeda(cls, value):
         value = value.upper()
         if value not in VALID_CURRENCIES:
             raise ValueError(f"Moeda inválida: {value}")
-        return value
-    
-    @field_validator("amount")
-    def limitar_precisao(cls, value):
-        if round(value, 6) != value:
-            raise ValueError("O valor deve ter no máximo 6 casas decimais.")
         return value
 
     @field_validator("to_currency")
