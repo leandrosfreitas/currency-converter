@@ -3,7 +3,7 @@ from pydantic import BaseModel, Field, field_validator
 
 # Lista simplificada de moedas válidas (pode ser expandida)
 VALID_CURRENCIES = {
-    "BRL", "USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF"
+    "BRL", "USD", "EUR", "GBP", "JPY", "AUD", "CAD", "CHF", "CNY", "INR", "RUB", "MXN", "ZAR", "AED", "SGD", "HKD", "KRW", "SEK", "NOK", "DKK", "NZD", "TRY", "SAR", 
 }
 
 class CurrencyConversionRequest(BaseModel):
