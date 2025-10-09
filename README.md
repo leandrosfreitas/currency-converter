@@ -1,4 +1,4 @@
-# 💱 DindinConverter
+# KambioFlash
 
 Uma aplicação completa para conversão de moedas em tempo real, com frontend em **React + Vite** e backend em **FastAPI**. Ideal para quem precisa consultar cotações atualizadas e realizar conversões com praticidade e interface intuitiva.
 
@@ -6,7 +6,7 @@ Uma aplicação completa para conversão de moedas em tempo real, com frontend e
 
 ## 📌 Descrição do projeto
 
-O DindinConverter permite ao usuário:
+O KambioFlash permite ao usuário:
 
 - Converter valores entre moedas internacionais
 - Visualizar a cotação atual e a data da conversão
