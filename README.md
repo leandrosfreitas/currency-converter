@@ -15,7 +15,7 @@ O KambioFlash permite ao usuário:
 
 A aplicação é dividida em dois módulos:
 
-- **Backend (FastAPI)**: expõe uma API REST que valida os dados, consulta uma API externa de câmbio e retorna os resultados formatados.
+- **Backend (FastAPI)**: expfornece uma API REST que valida os dados, consulta uma API externa de câmbio e retorna os resultados formatados.
 - **Frontend (React + Vite)**: oferece uma interface moderna e responsiva com histórico, tema escuro e feedback visual.
 
 ---
@@ -24,48 +24,54 @@ A aplicação é dividida em dois módulos:
 
 ### 🔧 Backend (FastAPI)
 
-1. Acesse a pasta `backend`:
+
+1. Instale o Poetry (caso ainda não tenha):
+
+   #### Linux/macOS:
    ```bash
-   cd backend
+   curl -sSL https://install.python-poetry.org | python3
    ```
 
-2. Crie e ative o ambiente virtual:
-
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # Linux/macOS
-   .venv\Scripts\activate      # Windows
+   #### Windows (PowerShell):
+   ```powershell
+   (Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | python
    ```
 
-3. Instale as dependências:
+2. Reinicie o terminal (se necessário) e verifique se o Poetry foi instalado corretamente:
 
    ```bash
-   pip install -r requirements.txt
+   poetry --version
    ```
 
-4. Crie sua própria conta em um serviço de câmbio (como [CurrencyAPI](https://currencyapi.com), [ExchangeRate-API](https://www.exchangerate-api.com) ou outro de sua preferência) e gere sua chave de acesso.
+3. Instale as dependências do projeto:
+   ```bash
+   poetry install
+   ```
+
+4. Ative o ambiente virtual do Poetry:
+   ```bash
+   poetry shell
+   ```
 
 5. Configure o arquivo `.env` com a URL da API e sua chave:
-
    ```dotenv
-   API_URL=https://api.exemplo.com/latest?apikey=SUA_CHAVE_AQUI
-   DATABASE_URL=postgresql://user:password@localhost:5432/currency_db
+   API_URL=4acb7ff47f493faa4afdae8762a3cf2a
    ```
 
 6. Execute o servidor:
 
    ```bash
-   uvicorn app.main:app --reload
+   fastapi dev backend/app/main.py
    ```
 
 ---
 
 ### 🖥️ Frontend (React + Vite)
 
-1. Acesse a pasta `frontend`:
+1. Acesse a pasta `frontend/currency-converter`:
 
    ```bash
-   cd frontend
+   cd frontend/currency-converter
    ```
 
 2. Instale as dependências:
@@ -124,6 +130,29 @@ Content-Type: application/json
   "valor": 100.0,
   "data": "2025-10-09T18:00:00"
 }
+```
+
+---
+
+## 🌐 API externa utilizada
+
+Este projeto utiliza a API gratuita [exchangerate.host](https://exchangerate.host) para obter as taxas de câmbio em tempo real e históricas.
+
+### Exemplos de requisição à exchangerate.host
+
+#### Conversão simples
+```http
+GET https://api.exchangerate.host/convert?from=BRL&to=USD&amount=100
+```
+
+#### Consulta de taxa histórica
+```http
+GET https://api.exchangerate.host/2025-10-01?base=USD&symbols=BRL
+```
+
+#### Últimas taxas
+```http
+GET https://api.exchangerate.host/latest?base=USD&symbols=BRL,EUR,GBP
 ```
 
 ---
