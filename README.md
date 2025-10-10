@@ -55,7 +55,7 @@ A aplicação é dividida em dois módulos:
 
 5. Configure o arquivo `.env` com a URL da API e sua chave:
    ```dotenv
-   API_URL=4acb7ff47f493faa4afdae8762a3cf2a
+   API_URL=SUA_CHAVE
    ```
 
 6. Execute o servidor:
