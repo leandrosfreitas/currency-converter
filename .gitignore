@@ -1,28 +1,88 @@
-# Logs
-logs
+# =========================================
+# 🐍 BACKEND (Python)
+# =========================================
+
+# Ambientes virtuais
+.venv/
+venv/
+ENV/
+env/
+
+# Cache e artefatos de compilação
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Arquivos temporários de testes
+.pytest_cache/
+.coverage
+htmlcov/
+.cache/
+.tox/
+nosetests.xml
+coverage.xml
+
+# Configurações locais e credenciais
+backend/.env
+.env
+
+# Logs e arquivos de execução
 *.log
+*.pot
+*.mo
+
+# =========================================
+# ⚡ FRONTEND (Node.js / Vite)
+# =========================================
+
+# Dependências
+node_modules/
+frontend/currency-converter/node_modules/
+
+# Build e cache
+dist/
+build/
+*.tsbuildinfo
+.vite/
+.cache/
+
+# Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
+# Configurações locais
+frontend/currency-converter/.env
+frontend/currency-converter/.env.local
+frontend/currency-converter/.env.*.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# =========================================
+# 🧰 OUTROS / GERAIS
+# =========================================
+
+# Arquivos de sistema
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+Thumbs.db
 
-# Ignorar caches do Python
-__pycache__/
-*.pyc
+# IDEs e editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================================
+# ⚙️ POETRY / PIP
+# =========================================
+# Arquivos de lock e instalação
+poetry.lock
+# (se quiser versionar o lock, remova esta linha)
+
+# =========================================
+# 🐳 DOCKER
+# =========================================
+docker/*.env
+docker/*.log
+docker/tmp/
